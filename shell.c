@@ -1,21 +1,19 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/wait.h>
+#include "main.h"
 
-int main()
+int main(int argc, char *argv[])
 {
 	char *buffer = NULL;
 	size_t buff_size = 0;
 	pid_t child_pid;
-	char *args[] = {buffer, NULL};
+	char *args[2];
+	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
-		printf("bienvenue à la maison\n");
+		printf("Welcome to my shell\n");
 		printf("type 'exit' to quit\n");
-		printf("$");
+		printf("$ ");
 
 		if (getline(&buffer, &buff_size, stdin) == -1)
 		{
@@ -25,6 +23,7 @@ int main()
 		}
 
 		buffer[strcspn(buffer, "\n")] = 0;
+
 		if (strcmp(buffer, "exit") == 0)
 		{
 			free(buffer);
@@ -40,18 +39,23 @@ int main()
 		}
 		else if (child_pid == 0)
 		{
+
 			if (execve(buffer, args, NULL) == -1)
 			{
-				perror("execve failed");
+				perror(argv[0]);
+				free(buffer);
 				exit(1);
 			}
 		}
 		else
 		{
-			wait(NULL);
+			if (wait(NULL) == -1)
+			{
+				perror("wait failed");
+			}
 		}
-
-		free(buffer);
-		return (0);
 	}
+
+	free(buffer);
+	return 0;
 }
