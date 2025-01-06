@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-
+char *_getenv(const char *name, char **env);
+int main(int argc, char *argv[]);
 
 #endif
