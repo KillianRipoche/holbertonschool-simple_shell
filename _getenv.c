@@ -1,6 +1,6 @@
 #include "main.h"
 /** */
-char *_getenv(const char *name, char **env)
+/* char *_getenv(const char *name, char **env)
 {
 	int i;
 	size_t name_len;
@@ -42,4 +42,4 @@ int main(void)
 		printf("Variable non trouvée.\n");
 
 	return (0);
-}
+} */
