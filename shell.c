@@ -31,11 +31,11 @@ int main(int argc, char *argv[], char **environ)
 		if (strlen(line) == 0)
 			continue;
 
-		if (strcmp(line, "exit") == 0)
+		/* if (strcmp(line, "exit") == 0)
 		{
 			free(line);
 			exit(0);
-		}
+		} */
 
 		execute_command(line, argv[0], environ);
 	}
