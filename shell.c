@@ -59,6 +59,8 @@ void execute_command(char *line, char *exec_name)
 		args[0] = line;
 		args[1] = NULL;
 
+		free(line);
+
 		if (execve(line, args, NULL) == -1)
 		{
 			perror(exec_name);
