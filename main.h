@@ -8,7 +8,7 @@
 #include <sys/wait.h>
 
 char *_getenv(const char *name, char **env);
-int main(int argc, char *argv[]);
-void execute_command(char *line, char *exec_name);
+int main(int argc, char *argv[], char **environ);
+void execute_command(char *line, char *exec_name, char **environ);
 
 #endif
