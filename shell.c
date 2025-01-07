@@ -1,10 +1,12 @@
 #include "main.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t nread;
+	ssize_t Numc_read;
+
+	(void)argc;
 
 	while (1)
 	{
@@ -15,16 +17,16 @@ int main(void)
 			fflush(stdout);
 		}
 
-		nread = getline(&line, &len, stdin);
+		Numc_read = getline(&line, &len, stdin);
 
-		if (nread == -1)
+		if (Numc_read == -1)
 		{
 			if (isatty(STDIN_FILENO))
 				printf("\n");
 			break;
 		}
 
-		line[nread - 1] = '\0';
+		line[Numc_read - 1] = '\0';
 
 		if (strlen(line) == 0)
 			continue;
@@ -35,20 +37,20 @@ int main(void)
 			exit(0);
 		}
 
-		execute_command(line);
+		execute_command(line, argv[0]);
 	}
 
 	free(line);
 	return 0;
 }
 
-void execute_command(char *line)
+void execute_command(char *line, char *exec_name)
 {
 	pid_t child_pid = fork();
 
 	if (child_pid < 0)
 	{
-		perror("fork failed");
+		perror(exec_name);
 		return;
 	}
 	else if (child_pid == 0)
@@ -59,7 +61,7 @@ void execute_command(char *line)
 
 		if (execve(line, args, NULL) == -1)
 		{
-			perror("execve failed");
+			perror(exec_name);
 			exit(1);
 		}
 	}
@@ -67,7 +69,7 @@ void execute_command(char *line)
 	{
 		if (wait(NULL) == -1)
 		{
-			perror("wait failed");
+			perror(exec_name);
 		}
 	}
 }
