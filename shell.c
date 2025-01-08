@@ -62,13 +62,13 @@ void execute_command(char *line, char *exec_name, char **environ)
 		args[0] = line;
 		args[1] = NULL;
 
-		free(args[0]);
 
 		if (execve(line, args, environ) == -1)
 		{
 			fprintf(stderr, "%s: No such file or directory\n", exec_name);
 			_exit(EXIT_FAILURE);
 		}
+		free(args[0]);
 	}
 	else
 	{
