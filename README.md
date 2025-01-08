@@ -3,11 +3,29 @@
 
 A brief description of what this project does and who it's for
 
+## Flowtchart
 
+
+
+
+## OUTPUT
+
+```c
+root@Hamza:~/holbertonschool-simple_shell# ./hsh
+$ ls
+AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _strtok.c  hsh  main.h  man_1_simple_shell  shell.c
+$ /bin/ls
+AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _strtok.c  hsh  main.h  man_1_simple_shell  shell.c
+$ exit
+root@Hamza:~/holbertonschool-simple_shell#
+```
 
 ## Compilation
 
-for compile and execute the code, enter this line:
+for compile and execute the code, enter this line
+
+
+
 
 ```bash
 gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
@@ -35,8 +53,6 @@ void free_args(char **args);
 char *get_command_path(char *command);
 
 #endif
-
-
 ```
 ## Authors
 
