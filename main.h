@@ -5,10 +5,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 
-char *_getenv(const char *name, char **env);
-int main(void);
-void execute_command(char *line);
+#define MAX_TOKENS 64
+
+void execute_command(char *command);
+char **tokenize_input(char *input);
+void free_args(char **args);
+char *get_command_path(char *command);
 
 #endif

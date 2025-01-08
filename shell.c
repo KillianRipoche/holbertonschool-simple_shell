@@ -1,73 +1,42 @@
 #include "main.h"
 
-int main(void)
+/**
+ * main - Entry point for the simple shell program
+ * @argc: Argument count
+ * @argv: Argument vector
+ *
+ * Return: 0 on success
+ */
+int main(int argc, char **argv)
 {
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t nread;
+	char *input = NULL;
+	size_t input_size = 0;
+	ssize_t read_size;
+
+	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
-
 		if (isatty(STDIN_FILENO))
-		{
-			printf("$ ");
-			fflush(stdout);
-		}
+			write(STDOUT_FILENO, "$ ", 2);
 
-		nread = getline(&line, &len, stdin);
-
-		if (nread == -1)
-		{
-			if (isatty(STDIN_FILENO))
-				printf("\n");
+		read_size = getline(&input, &input_size, stdin);
+		if (read_size == -1)
 			break;
-		}
 
-		line[nread - 1] = '\0';
+		if (input[read_size - 1] == '\n')
+			input[read_size - 1] = '\0';
 
-		if (strlen(line) == 0)
-			continue;
-
-		if (strcmp(line, "exit") == 0)
+		if (strcmp("exit", input) == 0)
 		{
-			free(line);
+			free(input);
 			exit(0);
 		}
 
-		execute_command(line);
+		execute_command(input);
 	}
 
-	free(line);
-	return 0;
-}
-
-void execute_command(char *line)
-{
-	pid_t child_pid = fork();
-
-	if (child_pid < 0)
-	{
-		perror("fork failed");
-		return;
-	}
-	else if (child_pid == 0)
-	{
-		char *args[2];
-		args[0] = line;
-		args[1] = NULL;
-
-		if (execve(line, args, NULL) == -1)
-		{
-			perror("execve failed");
-			exit(1);
-		}
-	}
-	else
-	{
-		if (wait(NULL) == -1)
-		{
-			perror("wait failed");
-		}
-	}
+	free(input);
+	return (0);
 }
