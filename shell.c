@@ -28,8 +28,12 @@ int main(int argc, char *argv[], char **environ)
 		line[Num_read - 1] = '\0';
 
 		if (strlen(line) == 0)
+		{
+			free(line);
+			line = NULL;
+			len = 0;
 			continue;
-
+		}
 		/* if (strcmp(line, "exit") == 0)
 		{
 			free(line);
