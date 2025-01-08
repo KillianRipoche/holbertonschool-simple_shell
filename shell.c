@@ -10,11 +10,9 @@ int main(int argc, char *argv[], char **environ)
 
 	while (1)
 	{
-
 		if (isatty(STDIN_FILENO))
 		{
 			printf("$ ");
-			fflush(stdout);
 		}
 
 		Num_read = getline(&line, &len, stdin);
@@ -29,8 +27,12 @@ int main(int argc, char *argv[], char **environ)
 		line[Num_read - 1] = '\0';
 
 		if (strlen(line) == 0)
+		{
+			free(line);
+			line = NULL;
+			len = 0;
 			continue;
-
+		}
 		/* if (strcmp(line, "exit") == 0)
 		{
 			free(line);
@@ -46,31 +48,57 @@ int main(int argc, char *argv[], char **environ)
 
 void execute_command(char *line, char *exec_name, char **environ)
 {
+	int i = 0;
+	char *token;
 	pid_t child_pid = fork();
 
 	if (child_pid < 0)
 	{
-		perror("fork failed");
+		perror("fork");
 		return;
 	}
 	else if (child_pid == 0)
 	{
-		char *args[2];
-		args[0] = line;
-		args[1] = NULL;
+		char **args = malloc(sizeof(char *));
+		if (args == NULL)
+		{
+			perror("malloc");
+			_exit(EXIT_FAILURE);
+		}
+
+
+		token = strtok(line, " ");
+
+		while (token != NULL)
+		{
+
+			args[i] = token;
+
+			i++;
+			args = realloc(args, (i + 1) * sizeof(char *));
+			if (args == NULL)
+			{
+				perror("realloc");
+				_exit(EXIT_FAILURE);
+			}
+
+			token = strtok(NULL, " ");
+		}
+
+		args[i] = NULL;
 
 		if (execve(line, args, environ) == -1)
 		{
-			perror(exec_name);
-			exit(1);
+			fprintf(stderr, "%s: No such file or directory\n", exec_name);
+			_exit(EXIT_FAILURE);
 		}
+		free(args[0]);
 	}
 	else
 	{
 		if (wait(NULL) == -1)
 		{
-			perror("wait failed");
+			perror("wait");
 		}
 	}
 }
-
