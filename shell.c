@@ -42,14 +42,9 @@ int main(int argc, char *argv[], char **environ)
 
 		execute_command(line, argv[0], environ);
 
-		free(line);
-		line = NULL;
-		len = 0;
 	}
-
-	if (line != NULL)
-		free(line);
-
+	
+	free(line);
 	return 0;
 }
 
