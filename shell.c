@@ -3,17 +3,18 @@
  * main - Entry point for the simple shell program
  * @argc: Argument count
  * @argv: Argument vector
+ * @env: environnement
  *
  * Return: 0 on success
  */
-int main(int argc, char **argv)
+int main(int ac, char **av, char **env)
 {
 	char *input = NULL;
 	size_t input_size = 0;
 	ssize_t read_size;
 
-	(void)argc;
-	(void)argv;
+	(void)ac;
+	(void)av;
 
 	while (1)
 	{
@@ -33,7 +34,7 @@ int main(int argc, char **argv)
 			exit(0);
 		}
 
-		execute_command(input);
+		execute_command(input, env);
 	}
 
 	free(input);
