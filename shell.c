@@ -10,10 +10,10 @@ int main(int argc, char *argv[], char **environ)
 
 	while (1)
 	{
-			if (isatty(STDIN_FILENO))
-			{
-				printf("$ ");
-			}
+		if (isatty(STDIN_FILENO))
+		{
+			printf("$ ");
+		}
 
 		Num_read = getline(&line, &len, stdin);
 
@@ -40,7 +40,6 @@ int main(int argc, char *argv[], char **environ)
 		} */
 
 		execute_command(line, argv[0], environ);
-
 	}
 
 	free(line);
@@ -49,6 +48,8 @@ int main(int argc, char *argv[], char **environ)
 
 void execute_command(char *line, char *exec_name, char **environ)
 {
+	int i = 0;
+	char *token;
 	pid_t child_pid = fork();
 
 	if (child_pid < 0)
@@ -58,10 +59,33 @@ void execute_command(char *line, char *exec_name, char **environ)
 	}
 	else if (child_pid == 0)
 	{
-		char *args[2];
-		args[0] = line;
-		args[1] = NULL;
+		char **args = malloc(sizeof(char *));
+		if (args == NULL)
+		{
+			perror("malloc");
+			_exit(EXIT_FAILURE);
+		}
 
+
+		token = strtok(line, " ");
+
+		while (token != NULL)
+		{
+
+			args[i] = token;
+
+			i++;
+			args = realloc(args, (i + 1) * sizeof(char *));
+			if (args == NULL)
+			{
+				perror("realloc");
+				_exit(EXIT_FAILURE);
+			}
+
+			token = strtok(NULL, " ");
+		}
+
+		args[i] = NULL;
 
 		if (execve(line, args, environ) == -1)
 		{
