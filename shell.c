@@ -10,11 +10,11 @@ int main(int argc, char *argv[], char **environ)
 
 	while (1)
 	{
-
-		if (isatty(STDIN_FILENO))
-		{
-			printf("$ ");
-		}
+			if (isatty(STDIN_FILENO))
+			{
+				printf("$ ");
+				fflush(stdout);
+			}
 
 		Num_read = getline(&line, &len, stdin);
 
@@ -22,6 +22,13 @@ int main(int argc, char *argv[], char **environ)
 		{
 			if (isatty(STDIN_FILENO))
 				printf("\n");
+			{
+				if (line == NULL)
+					break;
+			}
+			free(line);
+			line = NULL;
+			len = 0;
 			break;
 		}
 
@@ -29,9 +36,6 @@ int main(int argc, char *argv[], char **environ)
 
 		if (strlen(line) == 0)
 		{
-			free(line);
-			line = NULL;
-			len = 0;
 			continue;
 		}
 		/* if (strcmp(line, "exit") == 0)
