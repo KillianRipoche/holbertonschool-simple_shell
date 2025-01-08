@@ -14,7 +14,6 @@ int main(int argc, char *argv[], char **environ)
 		if (isatty(STDIN_FILENO))
 		{
 			printf("$ ");
-			fflush(stdout);
 		}
 
 		Num_read = getline(&line, &len, stdin);
