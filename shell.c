@@ -13,7 +13,6 @@ int main(int argc, char *argv[], char **environ)
 			if (isatty(STDIN_FILENO))
 			{
 				printf("$ ");
-				fflush(stdout);
 			}
 
 		Num_read = getline(&line, &len, stdin);
@@ -67,7 +66,7 @@ void execute_command(char *line, char *exec_name, char **environ)
 
 		if (execve(line, args, environ) == -1)
 		{
-			perror(exec_name);
+			fprintf(stderr, "%s: No such file or directory\n", exec_name);
 			exit(EXIT_FAILURE);
 		}
 	}
