@@ -49,7 +49,7 @@ void execute_command(char *line, char *exec_name, char **environ)
 
 	if (child_pid < 0)
 	{
-		perror("fork failed");
+		perror("fork");
 		return;
 	}
 	else if (child_pid == 0)
@@ -60,15 +60,15 @@ void execute_command(char *line, char *exec_name, char **environ)
 
 		if (execve(line, args, environ) == -1)
 		{
-			perror(exec_name);
-			exit(1);
+			fprintf(stderr, "%s: No such file or directory\n", exec_name);
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
 		if (wait(NULL) == -1)
 		{
-			perror("wait failed");
+			perror("wait");
 		}
 	}
 }
