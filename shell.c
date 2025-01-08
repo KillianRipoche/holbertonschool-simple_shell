@@ -22,13 +22,6 @@ int main(int argc, char *argv[], char **environ)
 		{
 			if (isatty(STDIN_FILENO))
 				printf("\n");
-			{
-				if (line == NULL)
-					break;
-			}
-			free(line);
-			line = NULL;
-			len = 0;
 			break;
 		}
 
@@ -36,6 +29,9 @@ int main(int argc, char *argv[], char **environ)
 
 		if (strlen(line) == 0)
 		{
+			free(line);
+			line = NULL;
+			len = 0;
 			continue;
 		}
 		/* if (strcmp(line, "exit") == 0)
@@ -45,9 +41,15 @@ int main(int argc, char *argv[], char **environ)
 		} */
 
 		execute_command(line, argv[0], environ);
+
+		free(line);
+		line = NULL;
+		len = 0;
 	}
 
-	free(line);
+	if (line != NULL)
+		free(line);
+
 	return 0;
 }
 
