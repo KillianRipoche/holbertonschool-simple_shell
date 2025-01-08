@@ -1,6 +1,6 @@
 #include "main.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char **environ)
 {
 	char *line = NULL;
 	size_t len = 0;
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 			exit(0);
 		} */
 
-		execute_command(line, argv[0]);
+		execute_command(line, argv[0], environ);
 
 	}
 
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void execute_command(char *line, char *exec_name)
+void execute_command(char *line, char *exec_name, char **environ)
 {
 	pid_t child_pid = fork();
 
@@ -65,7 +65,7 @@ void execute_command(char *line, char *exec_name)
 
 		free(args[0]);
 
-		if (execve(line, args, NULL) == -1)
+		if (execve(line, args, environ) == -1)
 		{
 			fprintf(stderr, "%s: No such file or directory\n", exec_name);
 			exit(EXIT_FAILURE);
