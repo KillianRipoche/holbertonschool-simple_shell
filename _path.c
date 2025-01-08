@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * get_command_path - entry
  *
@@ -19,27 +20,33 @@ char *get_command_path(char *command, char **env)
 	}
 
 	path = find_path_in_env(env);
+
 	if (!path)
 		return (NULL);
 
 	path_copy = strdup(path);
+
 	if (!path_copy)
 		return (NULL);
 
 	dir = strtok(path_copy, ":");
+
 	while (dir)
 	{
 		full_path = build_full_path(dir, command);
+
 		if (!full_path)
 		{
 			free(path_copy);
 			return (NULL);
 		}
+
 		if (stat(full_path, &st) == 0)
 		{
 			free(path_copy);
 			return (full_path);
 		}
+
 		free(full_path);
 		dir = strtok(NULL, ":");
 	}
@@ -47,6 +54,7 @@ char *get_command_path(char *command, char **env)
 	free(path_copy);
 	return (NULL);
 }
+
 /**
  * find_path_in_env - entry
  *
@@ -61,10 +69,12 @@ char *find_path_in_env(char **env)
 	{
 		if (strncmp(env[i], "PATH=", 5) == 0)
 			return (env[i] + 5);
+
 		i++;
 	}
 	return (NULL);
 }
+
 /**
  * build_full_path - Entry
  *
@@ -77,8 +87,11 @@ char *build_full_path(char *dir, char *command)
 	char *full_path;
 
 	full_path = malloc(strlen(dir) + strlen(command) + 2);
+
 	if (!full_path)
 		return (NULL);
+
 	sprintf(full_path, "%s/%s", dir, command);
+
 	return (full_path);
 }

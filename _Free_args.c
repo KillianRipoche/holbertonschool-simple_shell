@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * free_args - Frees the argument array
  * @args: The argument array to free
