@@ -1,5 +1,5 @@
 
-#include "shell.h"
+#include "main.h"
 
 /**
  * execute_command - Executes the given command
