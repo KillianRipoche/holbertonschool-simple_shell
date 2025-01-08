@@ -1,104 +1,42 @@
 #include "main.h"
 
-int main(int argc, char *argv[], char **environ)
+/**
+ * main - Entry point for the simple shell program
+ * @argc: Argument count
+ * @argv: Argument vector
+ *
+ * Return: 0 on success
+ */
+int main(int argc, char **argv)
 {
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t Num_read;
+	char *input = NULL;
+	size_t input_size = 0;
+	ssize_t read_size;
 
 	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-		{
-			printf("$ ");
-		}
+			write(STDOUT_FILENO, "$ ", 2);
 
-		Num_read = getline(&line, &len, stdin);
-
-		if (Num_read == -1)
-		{
-			if (isatty(STDIN_FILENO))
-				printf("\n");
+		read_size = getline(&input, &input_size, stdin);
+		if (read_size == -1)
 			break;
-		}
 
-		line[Num_read - 1] = '\0';
+		if (input[read_size - 1] == '\n')
+			input[read_size - 1] = '\0';
 
-		if (strlen(line) == 0)
+		if (strcmp("exit", input) == 0)
 		{
-			free(line);
-			line = NULL;
-			len = 0;
-			continue;
-		}
-		/* if (strcmp(line, "exit") == 0)
-		{
-			free(line);
+			free(input);
 			exit(0);
-		} */
-
-		execute_command(line, argv[0], environ);
-	}
-
-	free(line);
-	return 0;
-}
-
-void execute_command(char *line, char *exec_name, char **environ)
-{
-	int i = 0;
-	char *token;
-	pid_t child_pid = fork();
-
-	if (child_pid < 0)
-	{
-		perror("fork");
-		return;
-	}
-	else if (child_pid == 0)
-	{
-		char **args = malloc(sizeof(char *));
-		if (args == NULL)
-		{
-			perror("malloc");
-			_exit(EXIT_FAILURE);
 		}
 
-
-		token = strtok(line, " ");
-
-		while (token != NULL)
-		{
-
-			args[i] = token;
-
-			i++;
-			args = realloc(args, (i + 1) * sizeof(char *));
-			if (args == NULL)
-			{
-				perror("realloc");
-				_exit(EXIT_FAILURE);
-			}
-
-			token = strtok(NULL, " ");
-		}
-
-		args[i] = NULL;
-
-		if (execve(line, args, environ) == -1)
-		{
-			fprintf(stderr, "%s: No such file or directory\n", exec_name);
-			_exit(EXIT_FAILURE);
-		}
-		free(args[0]);
+		execute_command(input);
 	}
-	else
-	{
-		if (wait(NULL) == -1)
-		{
-			perror("wait");
-		}
-	}
+
+	free(input);
+	return (0);
 }
