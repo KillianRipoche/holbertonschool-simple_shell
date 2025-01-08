@@ -1,14 +1,19 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef PROJECT_SHELL_H
+#define PROJECT_SHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
-char *_getenv(const char *name, char **env);
-int main(int argc, char *argv[], char **environ);
-void execute_command(char *line, char *exec_name, char **environ);
+#define MAX_TOKENS 64
+
+char **tokenize_input(char *input);
+void free_args(char **args);
+char *get_command_path(char *command);
+void execute_command(char *command);
 
 #endif
