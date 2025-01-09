@@ -29,15 +29,16 @@ int main(int ac, char **av, char **env)
 		if (input[read_size - 1] == '\n')
 			input[read_size - 1] = '\0';
 
-		if (strcmp("exit", input) == 0)
-		{
-			free(input);
-			exit(0);
-		}
 		if (strcmp("env", input) == 0)
 		{
 			print_env(env);
 			continue;
+		}
+		
+		if (strcmp("exit", input) == 0)
+		{
+			free(input);
+			exit(0);
 		}
 
 		execute_command(input, env);
