@@ -35,7 +35,7 @@ gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
 
 ---
 
-### main
+### main.h
 
 ```
 #ifndef SHELL_H
