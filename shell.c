@@ -2,8 +2,8 @@
 
 /**
  * main - Entry point for the simple shell program
- * @ac: Argument count
- * @av: Argument vector
+ * @ac: Argument count (unused)
+ * @av: Argument vector (unused)
  * @env: environnement
  *
  * Return: 0 on success
@@ -17,11 +17,12 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 
-	while (1)
+	while (1) /* Main loop of the shell */
 	{
-		if (isatty(STDIN_FILENO))
+		if (isatty(STDIN_FILENO)) /* Check if input is from a terminal */
 			write(STDOUT_FILENO, "$ ", 2);
 
+		/* Read a line of input from the user*/
 		read_size = getline(&input, &input_size, stdin);
 		if (read_size == -1)
 			break;
@@ -34,7 +35,7 @@ int main(int ac, char **av, char **env)
 			print_env(env);
 			continue;
 		}
-		
+
 		if (strcmp("exit", input) == 0)
 		{
 			free(input);
