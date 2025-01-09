@@ -1,4 +1,3 @@
-
 # Project Simple Shell
 
 
@@ -11,7 +10,7 @@
 
 ### Description
 
-A brief description of what this project does and who it's for
+Simple Shell is a lightweight UNIX command-line interpreter. It replicates a basic shell environment, supporting fundamental commands and utilities to provide a deeper understanding of how a shell operates internally.
 
 ### Flowtchart
 
@@ -58,7 +57,7 @@ for compile and execute the code, enter this line
 
 
 ```bash
-gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c -o hsh
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
 
 ---
@@ -79,10 +78,13 @@ gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c -o hsh
 
 #define MAX_TOKENS 64
 
-void execute_command(char *command);
+void print_env(char **env);
+char *build_full_path(char *dir, char *command);
+char *find_path_in_env(char **env);
 char **tokenize_input(char *input);
 void free_args(char **args);
-char *get_command_path(char *command);
+char *get_command_path(char *command, char **env);
+void execute_command(char *command, char **env);
 
 #endif
 ```
