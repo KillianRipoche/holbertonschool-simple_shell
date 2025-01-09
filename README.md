@@ -5,7 +5,7 @@
 ## Summary
 - [Description](#description)
 - [Flowtchart](#Flowtchart)
-- [OUTPUT](#OUTPUT)
+- [Output](#Output)
 - [Compilation](#Compilation)
 - [Authors](#Authors)
 
@@ -18,7 +18,7 @@ A brief description of what this project does and who it's for
 
 
 ---
-### OUTPUT
+### Output
 
 ```bash
 root@Hamza:~/holbertonschool-simple_shell# ./hsh
