@@ -19,7 +19,6 @@ AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _strtok.c  hsh  main.h  m
 $ /bin/ls
 AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _strtok.c  hsh  main.h  man_1_simple_shell  shell.c
 $ exit
-root@Hamza:~/holbertonschool-simple_shell#
 ```
 
 ---
