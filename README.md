@@ -15,7 +15,26 @@ A brief description of what this project does and who it's for
 
 ### Flowtchart
 
-
+```mermaid
+flowchart TD
+classDef start fill:#4cff00
+classDef fonction fill:#0092ff
+classDef return fill:#ff1100
+classDef memory fill:#ffd966
+classDef function fill:#9fc5e8
+A[Start]:::start --> B(Print prompt):::fonction
+B --> C(Get line):::function
+C --> D(Args):::function
+D -- no --> E(Free args):::memory
+D -- yes --> F(check if it's env):::fonction
+F -- yes --> G(print env):::fonction
+F -- no --> H(Check command exit):::fonction
+H -- yes --> I(exit of the shell):::return --> Z(end):::return
+H -- no --> J(Execute command, get path):::fonction
+J --> K(Free memory):::memory
+K --> B
+E --> B
+```
 
 ---
 ### Output
