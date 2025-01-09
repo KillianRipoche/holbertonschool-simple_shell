@@ -11,6 +11,7 @@
 
 #define MAX_TOKENS 64
 
+void print_env(char **env);
 char *build_full_path(char *dir, char *command);
 char *find_path_in_env(char **env);
 char **tokenize_input(char *input);

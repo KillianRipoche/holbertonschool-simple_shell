@@ -2,8 +2,8 @@
 
 /**
  * main - Entry point for the simple shell program
- * @argc: Argument count
- * @argv: Argument vector
+ * @ac: Argument count
+ * @av: Argument vector
  * @env: environnement
  *
  * Return: 0 on success
@@ -29,6 +29,12 @@ int main(int ac, char **av, char **env)
 		if (input[read_size - 1] == '\n')
 			input[read_size - 1] = '\0';
 
+		if (strcmp("env", input) == 0)
+		{
+			print_env(env);
+			continue;
+		}
+		
 		if (strcmp("exit", input) == 0)
 		{
 			free(input);
