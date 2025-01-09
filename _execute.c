@@ -17,7 +17,6 @@ void execute_command(char *command, char **env)
 		free_args(args);
 		return;
 	}
-
 	path = get_command_path(args[0], env);
 	if (!path)
 	{
@@ -25,7 +24,6 @@ void execute_command(char *command, char **env)
 		free_args(args);
 		return;
 	}
-
 	child_pid = fork();
 	if (child_pid == -1)
 	{
