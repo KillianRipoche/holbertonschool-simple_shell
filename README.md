@@ -1,16 +1,24 @@
 
 # Project Simple Shell
 
-DESCRIPTION
+
+## Summary
+- [Description](#description)
+- [Flowtchart](#Flowtchart)
+- [OUTPUT](#OUTPUT)
+- [Compilation](#Compilation)
+- [Authors](#Authors)
+
+### Description
 
 A brief description of what this project does and who it's for
 
-## Flowtchart
+### Flowtchart
 
 
 
 ---
-## OUTPUT
+### OUTPUT
 
 ```bash
 root@Hamza:~/holbertonschool-simple_shell# ./hsh
@@ -23,7 +31,7 @@ root@Hamza:~/holbertonschool-simple_shell#
 ```
 
 ---
-## Compilation
+### Compilation
 
 for compile and execute the code, enter this line
 
@@ -62,7 +70,7 @@ char *get_command_path(char *command);
 
 ---
 
-## Authors
+### Authors
 
 - [@KillianRipoche](https://github.com/KillianRipoche)
 - [@HamzaMoinet](https://www.github.com/HamzaMoinet)
