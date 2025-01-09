@@ -1,26 +1,37 @@
 
 # Project Simple Shell
 
+
+## Summary
+- [Description](#description)
+- [Flowtchart](#Flowtchart)
+- [Output](#Output)
+- [Compilation](#Compilation)
+- [Authors](#Authors)
+
+### Description
+
 A brief description of what this project does and who it's for
 
-## Flowtchart
+### Flowtchart
 
 
 
+---
+### Output
 
-## OUTPUT
-
-```c
+```bash
 root@Hamza:~/holbertonschool-simple_shell# ./hsh
 $ ls
-AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _strtok.c  hsh  main.h  man_1_simple_shell  shell.c
+AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _printenv.c  _strtok.c  exercice_test  hsh  main.h  man_1_simple_shell  shell.c
 $ /bin/ls
-AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _strtok.c  hsh  main.h  man_1_simple_shell  shell.c
+AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _printenv.c  _strtok.c  exercice_test  hsh  main.h  man_1_simple_shell  shell.c
 $ exit
 root@Hamza:~/holbertonschool-simple_shell#
 ```
 
-## Compilation
+---
+### Compilation
 
 for compile and execute the code, enter this line
 
@@ -28,12 +39,14 @@ for compile and execute the code, enter this line
 
 
 ```bash
-gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
+gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c -o hsh
 ```
 
-### main
+---
 
-```
+# [main.h](https://github.com/KillianRipoche/holbertonschool-simple_shell/blob/main/main.h)
+
+```c
 #ifndef SHELL_H
 #define SHELL_H
 
@@ -54,7 +67,10 @@ char *get_command_path(char *command);
 
 #endif
 ```
-## Authors
+
+---
+
+### Authors
 
 - [@KillianRipoche](https://github.com/KillianRipoche)
 - [@HamzaMoinet](https://www.github.com/HamzaMoinet)
