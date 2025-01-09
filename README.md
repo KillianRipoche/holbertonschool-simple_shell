@@ -93,5 +93,5 @@ void execute_command(char *command, char **env);
 
 ### Authors
 
-- [@KillianRipoche](https://github.com/KillianRipoche)
-- [@HamzaMoinet](https://www.github.com/HamzaMoinet)
+- [Killian Ripoche](https://github.com/KillianRipoche)
+- [Hamza Moinet](https://www.github.com/HamzaMoinet)
