@@ -36,7 +36,7 @@ gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
 
 ---
 
-### main (https://github.com/KillianRipoche/holbertonschool-simple_shell/blob/Hamza/main.h)
+### main
 
 ```
 #ifndef SHELL_H
