@@ -2,8 +2,8 @@
 
 /**
  * main - Entry point for the simple shell program
- * @argc: Argument count
- * @argv: Argument vector
+ * @ac: Argument count
+ * @av: Argument vector
  * @env: environnement
  *
  * Return: 0 on success
