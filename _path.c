@@ -20,33 +20,27 @@ char *get_command_path(char *command, char **env)
 	}
 
 	path = find_path_in_env(env);
-
 	if (!path)
 		return (NULL);
 
 	path_copy = strdup(path);
-
 	if (!path_copy)
 		return (NULL);
 
 	dir = strtok(path_copy, ":");
-
 	while (dir)
 	{
 		full_path = build_full_path(dir, command);
-
 		if (!full_path)
 		{
 			free(path_copy);
 			return (NULL);
 		}
-
 		if (stat(full_path, &st) == 0)
 		{
 			free(path_copy);
 			return (full_path);
 		}
-
 		free(full_path);
 		dir = strtok(NULL, ":");
 	}
