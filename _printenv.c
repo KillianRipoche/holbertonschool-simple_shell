@@ -1,17 +1,18 @@
 #include "main.h"
 
 /**
- * print_env - Entry
+ * print_env - Prints the environment variables to the standard output
  *
- * @env: Environnement
+ * @env: The array of environment variable
  */
 void print_env(char **env)
 {
 	int i = 0;
 
-	if (!env)
+	if (!env) /* Check if the environment variable array is NULL */
 		return;
 
+	/* Iterate through each environment variable and print it */
 	while (env[i])
 	{
 		write(STDOUT_FILENO, env[i], strlen(env[i]));
