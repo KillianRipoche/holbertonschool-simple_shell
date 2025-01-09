@@ -1,1 +1,60 @@
-man page
+.TH SIMPLE SHELL 09/01/2025 "Shell project"
+.TP
+NAME
+simple_shell \- a simple Unix shell program
+.TP
+.SH SYNOPSIS
+simple_shell
+.TP
+.SH DESCRIPTION
+is a basic UNIX shell that provides a command-line interface for users to interact with the operating system.
+The shell reads commands from the user, executes them, and returns the result. It supports both built-in commands and external program execution.
+.TP
+.SH IMPLEMENTATION
+.B simple_shell
+operates in an interactive loop, displaying a
+.B "$ "
+prompt when reading input from a terminal.
+Input is read using the
+.B getline
+function and tokenized with the
+.B tokenize_input
+function to extract commands and arguments.
+To execute commands, a child process is created using
+.B fork(2),
+and the command is executed in the child process with
+.B execve(2).
+If the user enters the
+.B exit
+command, the program terminates with a status of 0.
+.TP
+.SH USAGE
+On launching the shell, it will display a prompt:
+.RI "$ "
+You can type commands directly, and the shell will process and execute them.
+.TP
+.SH BUILT-IN COMMANDS
+The following commands are handled directly by the shell:
+.TP
+.B env
+Prints the current environment variables to the standard output.
+.TP
+.B exit
+Terminates the shell session.
+.SH EXAMPLES
+Here are some example usages of the shell:
+.TP
+.RI "$ env"
+Displays all environment variables.
+.TP
+.RI "$ ls -l"
+Executes the external command
+.TP
+.RI "$ exit"
+Exits the shell.
+.TP
+.SH AUTHOR
+.TP
+.B Developed by Hamza Moinet.
+.TP
+.B Developed by Killian Ripoche.
