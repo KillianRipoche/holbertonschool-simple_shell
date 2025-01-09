@@ -34,6 +34,11 @@ int main(int ac, char **av, char **env)
 			free(input);
 			exit(0);
 		}
+		if (strcmp("env", input) == 0)
+		{
+			print_env(env);
+			continue;
+		}
 
 		execute_command(input, env);
 	}
