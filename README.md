@@ -3,7 +3,7 @@
 
 ## Summary
 - [Description](#description)
-- [Flowtchart](#Flowtchart)
+- [Flowchart](#Flowchart)
 - [Output](#Output)
 - [Compilation](#Compilation)
 - [Authors](#Authors)
@@ -12,7 +12,7 @@
 
 Simple Shell is a lightweight UNIX command-line interpreter. It replicates a basic shell environment, supporting fundamental commands and utilities to provide a deeper understanding of how a shell operates internally.
 
-### Flowtchart
+### Flowchart
 
 ```mermaid
 flowchart TD
@@ -36,7 +36,7 @@ E --> B
 ```
 
 ---
-### Output
+### Output examples
 
 ```bash
 root@Hamza:~/holbertonschool-simple_shell# ./hsh
