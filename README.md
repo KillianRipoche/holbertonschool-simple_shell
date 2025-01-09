@@ -12,13 +12,14 @@ A brief description of what this project does and who it's for
 ---
 ## OUTPUT
 
-```c
+```bash
 root@Hamza:~/holbertonschool-simple_shell# ./hsh
 $ ls
-AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _strtok.c  hsh  main.h  man_1_simple_shell  shell.c
+ AUTHORS   README.md   _Free_args.c   _execute.c   _path.c   _printenv.c   _strtok.c  'exercice test'   hsh   main.h   man_1_simple_shell   shell.c
 $ /bin/ls
-AUTHORS  README.md  _Free_args.c  _execute.c  _path.c  _strtok.c  hsh  main.h  man_1_simple_shell  shell.c
+ AUTHORS   README.md   _Free_args.c   _execute.c   _path.c   _printenv.c   _strtok.c  'exercice test'   hsh   main.h   man_1_simple_shell   shell.c
 $ exit
+root@Hamza:~/holbertonschool-simple_shell#
 ```
 
 ---
@@ -30,7 +31,7 @@ for compile and execute the code, enter this line
 
 
 ```bash
-gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c -o hsh
+gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
 ```
 
 ---
