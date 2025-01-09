@@ -12,19 +12,19 @@ void execute_command(char *command, char **env)
 	int status;
 
 	args = tokenize_input(command);
-	if (!args || !args[0])
+	if (!args || !args[0]) /* check if the code is empty */
 	{
 		free_args(args);
 		return;
 	}
-	path = get_command_path(args[0], env);
+	path = get_command_path(args[0], env); /* Resolve the full path */
 	if (!path)
 	{
 		fprintf(stderr, "Command not found: %s\n", args[0]);
 		free_args(args);
 		return;
 	}
-	child_pid = fork();
+	child_pid = fork(); /* Create a child process using fork */
 	if (child_pid == -1)
 	{
 		perror("fork");
@@ -32,7 +32,7 @@ void execute_command(char *command, char **env)
 		free(path);
 		return;
 	}
-	if (child_pid == 0)
+	if (child_pid == 0) /* In the child process */
 	{
 		if (execve(path, args, env) == -1)
 		{
@@ -42,8 +42,8 @@ void execute_command(char *command, char **env)
 			exit(EXIT_FAILURE);
 		}
 	}
-	else
-		wait(&status);
+	else /* In the parent process */
+		wait(&status); /* Wait for the child process to finish */
 
 	free_args(args);
 	free(path);
