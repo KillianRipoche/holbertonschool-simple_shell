@@ -31,7 +31,7 @@ for compile and execute the code, enter this line
 
 
 ```bash
-gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
+gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c -o hsh
 ```
 
 ---
