@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+/* Define the maximum number of tokens that can be created when tokenizing */
 #define MAX_TOKENS 64
 
 void print_env(char **env);
