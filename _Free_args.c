@@ -8,10 +8,10 @@ void free_args(char **args)
 {
 	int i = 0;
 
-	if (!args)
+	if (!args) /* Check if the argument array is NULL */
 		return;
 
-	while (args[i])
+	while (args[i]) /* Iterate through the array and free each string */
 	{
 		free(args[i]);
 		i++;
