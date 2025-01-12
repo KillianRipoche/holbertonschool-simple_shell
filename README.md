@@ -44,7 +44,7 @@ F -- no --> H(Check command exit):::fonction
 
 H -- yes --> I(exit of the shell):::return --> Z(end):::return
 
-H -- no --> J(Get path \n Build the path ? \n Execute command):::fonction
+H -- no --> J(Get path -> Build the path ? -> Execute command):::fonction
 
 J --> K(Free memory):::memory
 
