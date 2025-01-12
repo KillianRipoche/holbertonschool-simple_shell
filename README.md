@@ -15,24 +15,43 @@ Simple Shell is a lightweight UNIX command-line interpreter. It replicates a bas
 ### Flowchart
 
 ```mermaid
+
 flowchart TD
+
 classDef start fill:#4cff00
+
 classDef fonction fill:#0092ff
+
 classDef return fill:#ff1100
+
 classDef memory fill:#ffd966
+
 classDef function fill:#9fc5e8
+
 A[Start]:::start --> B(Print prompt):::fonction
+
 B --> C(Get line):::function
-C --> D(Args):::function
+
+C --> D(There is args ?):::function
+
 D -- no --> E(Free args):::memory
-D -- yes --> F(check if it's env):::fonction
-F -- yes --> G(print env):::fonction
+
+D -- yes --> F(Check if it's env):::fonction
+
+F -- yes --> G(Print the environment):::fonction
+
 F -- no --> H(Check command exit):::fonction
+
 H -- yes --> I(exit of the shell):::return --> Z(end):::return
-H -- no --> J(Execute command, get path):::fonction
+
+H -- no --> J(Get path \n Build the path ? \n Execute command):::fonction
+
 J --> K(Free memory):::memory
+
 K --> B
+
 E --> B
+
 ```
 
 ---
